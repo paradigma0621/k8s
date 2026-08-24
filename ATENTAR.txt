@@ -1,0 +1,1 @@
+eu setei: sudo tailscale set --accept-dns=false
