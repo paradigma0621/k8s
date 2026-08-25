@@ -1,0 +1,22 @@
+
+❯ como vejo o meu ip na máquina do macos?
+
+No Terminal do macOS, o jeito que sempre acerta a interface certa (Wi-Fi ou cabo):
+
+ipconfig getifaddr $(route -n get default | awk '/interface:/{print $2}')
+
+Isso pega o IP da interface que está realmente carregando o tráfego. Sai algo como 192.168.0.x — é esse que você usa no ssh -p 2222 usuario@ESSE_IP a partir daqui.
+
+Versões mais curtas, se você já sabe por onde está conectado:
+
+ipconfig getifaddr en0     # Wi-Fi (no MacBook é quase sempre en0)
+
+E para ver tudo de uma vez, quando não tem certeza:
+
+ifconfig | grep "inet " | grep -v 127.0.0.1
+
+Sem Terminal: segure ⌥ (Option) e clique no ícone do Wi-Fi na barra de menu — o IP aparece direto no topo do menu, junto com o roteador e o canal. Ou em Ajustes do Sistema → Wi-Fi →
+Detalhes… na rede conectada.
+
+Só um cuidado: esse é o IP da LAN, que é o que você quer. Se você procurar "meuúblico da sua operadora, que não serve para nada aqui.
+
